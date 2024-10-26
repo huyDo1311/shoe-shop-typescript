@@ -36,6 +36,7 @@ export interface ProductDetailModel {
 
 export type ProductState = {
   arrProduct: ProductModel[],
+  productDetail: ProductDetailModel | null,
 }
 
 const initialState: ProductState = {

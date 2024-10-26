@@ -9,8 +9,8 @@ export default function HomeTemplate({}: Props) {
   return (
 
         <div className="">
-            <header>Header</header>
-            {/* <Header/> */}
+            {/* <header>Header</header> */}
+            <Header/>
             <Outlet/>
             {/* <Footer/> */}
             <footer>Footer</footer>

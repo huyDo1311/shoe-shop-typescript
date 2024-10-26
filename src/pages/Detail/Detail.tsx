@@ -31,11 +31,11 @@ export default function Detail({}: Props) {
       <h3>Product name</h3>
       <div className="row mt-2">
         <div className="col-4">
-          <img src="https://i.pravatar.cc?u=1" alt="..." height={350} width={350} style={{objectFit: 'cover'}} />
+          <img src={productDetail?.image} alt="..." height={350} width={350} style={{objectFit: 'cover'}} />
         </div>
         <div className="col-8">
-          <h3>Product name</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque illum unde eum ullam sapiente est enim exercitationem deleniti nemo aliquid repudiandae sed impedit quos doloribus, magnam adipisci dolore deserunt? Ab?</p>
+          <h3>{productDetail?.name}</h3>
+          <p>{productDetail?.shortDescription}</p>
         </div>
       </div>
       <h3 className='mt-2 text-center'>-Realate Product-</h3>
