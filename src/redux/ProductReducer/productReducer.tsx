@@ -90,14 +90,11 @@ export const getProductApi = () => {
 
   return async (dispatch: DispatchType) => {
     try {
-      const result = await axios({
-        url: 'https://shop.cyberlearn.vn/api/Product',
-        method: 'GET'
-      });
+      const result = await http.get(`https://shop.cyberlearn.vn/api/Product`);
 
-      const content: ProductModel[] = result.data.content;
+      const content:ProductModel[] = result.data.content;
 
-      const action: PayloadAction<ProductModel[]> = setArrProductAction(content);
+      const action:PayloadAction<ProductModel[]> = setArrProductAction(content);
       dispatch(action);
 
     } catch (error) {

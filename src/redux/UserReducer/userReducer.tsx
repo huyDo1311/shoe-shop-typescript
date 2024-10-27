@@ -71,6 +71,9 @@ const UserReducer = createSlice({
         settings.setStorageJson(ACCESS_TOKEN,action.payload.accessToken);
         settings.setCookieJson(ACCESS_TOKEN,action.payload.accessToken,30);
     });
+    builder.addCase(getProfileAsyncApi.fulfilled, (state:UserState,action:PayloadAction<UserProfile>) => {
+        state.userProfile = action.payload;
+    });
   }
 });
 
@@ -87,8 +90,9 @@ export const loginAsyncApi = createAsyncThunk('userReducer/loginAsyncApi',
 )
 
 export const getProfileAsyncApi = createAsyncThunk('userReducer/getProfileAsyncApi',
-    async () => {
-        
+    async ():Promise<UserProfile> => {
+        const response = await  http.post(`/api/Users/getProfile`);
+        return response.data.content;
     }
 )
 

@@ -81,32 +81,40 @@ export const settings = {
 export const http = axios.create({
   baseURL: DOMAIN,
   timeout: 30000,
-  headers: {
-    TokenCybersoft:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA3MSIsIkhldEhhblN0cmluZyI6IjE0LzAzLzIwMjUiLCJIZXRIYW5UaW1lIjoiMTc0MTkxMDQwMDAwMCIsIm5iZiI6MTcxNDA2NDQwMCwiZXhwIjoxNzQyMDU4MDAwfQ.aL6UU86iw9qfiazPYi9hHV3FjYthitqZbK5pBfChSiU",
-    Authorization:
-      "bearer " + settings.getStore(ACCESS_TOKEN),
-  },
+  // headers: {
+  //   TokenCybersoft:
+  //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA3MSIsIkhldEhhblN0cmluZyI6IjE0LzAzLzIwMjUiLCJIZXRIYW5UaW1lIjoiMTc0MTkxMDQwMDAwMCIsIm5iZiI6MTcxNDA2NDQwMCwiZXhwIjoxNzQyMDU4MDAwfQ.aL6UU86iw9qfiazPYi9hHV3FjYthitqZbK5pBfChSiU",
+  //   Authorization:
+  //     "Bearer " + JSON.parse(settings.getStore(ACCESS_TOKEN)),
+  //     // "bearer " + JSON.parse(localStorage.getItem("USER_LOGIN"))?.accessToken,
+  // },
 });
 
-//http.interceptors.request
-http.interceptors.request.use((config) => {
+// http.interceptors.request
+http.interceptors.request.use(
+  (config:any) => {
+    // const accessToken = "bearer " + settings.getStore(ACCESS_TOKEN);
 
-
-  const accessToken = settings.getStore(ACCESS_TOKEN);
-    
-    if (accessToken) {
+   
       config.headers = {
         ...config.headers,
-        Authorization: accessToken,
+        Authorization: "Bearer " + JSON.parse(settings.getStore(ACCESS_TOKEN)),
       };
-    }
+    
 
+    // if (accessToken) {
+    //   config.headers = {
+    //     ...(config.headers || {}), // Safely merge existing headers
+    //     Authorization: accessToken,
+    //   };
+    // }
 
-  return config;
-},(error) =>{
-  return Promise.reject(error);
-})
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 
 

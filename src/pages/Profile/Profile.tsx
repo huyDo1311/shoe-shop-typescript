@@ -3,6 +3,7 @@ import './profile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { DispatchType, RootState } from '../../redux/configStore';
 import { useFormik } from 'formik';
+import { getProfileAsyncApi } from '../../redux/UserReducer/userReducer';
 type Props = {}
 
 
@@ -19,7 +20,8 @@ export default function Profile({ }: Props) {
   const dispatch: DispatchType = useDispatch();
 
   useEffect(() => {
-
+    const actionThunk = getProfileAsyncApi();
+      dispatch(actionThunk);
   }, []);
 
   return (
